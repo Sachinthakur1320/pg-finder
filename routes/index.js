@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose=require('mongoose');
 const path = require('path');
+
 const auth = require('http-auth');
 const basic = auth.basic({
   file: path.join(__dirname, '../users.htpasswd'),
@@ -8,22 +9,21 @@ const basic = auth.basic({
 const { check, validationResult } = require('express-validator/check'); 
 const router = express.Router();
 const Registration = mongoose.model('Registration');
+
 router.get('/', (req, res) => {
     res.render('layout',{users:""});
 });
-router.get('/login',(req,res)=>{
-res.render('login');
-});
-router.get('/signup',(req,res)=>{
-  res.render('signup');
-  });
-router.post('/login',function(req,res)
+  /*router.post('/login',function(req,res)
 {
   var password=req.body.password;
   var emailid=req.body.emailid;
 
   Registration.findOne({emailid: emailid}, function(err,user)
   {
+    if(emailid==='sachin@admin'&& password=='admin')
+    {
+      return res.send('admin');
+    }
     if(err)
     {
       console.log(err);
@@ -43,27 +43,8 @@ return res.status(404).send("Invalid Pass");
     req.session.user=emailid;
     return res.render('dashboard',{users:""});
   })
-});
-router.post('/signup', function(req,res){
-var name=req.body.name;
-var password=req.body.password;
-var emailid=req.body.emailid;
-var city=req.body.city;
+});*/
 
-var newuser= new Registration();
-newuser.name=name;
-newuser.emailid=emailid;
-newuser.password=password;
-newuser.city=city;
-newuser.save(function(err,savedUser){
-if(err)
-{
-  console.log(err);
-  return res.status(500).send();
-}
-return res.status(200).send("SUCCESSFULLY SUBMITTED YOUR REQUEST");
-})
-});
 router.post('/',
 [
   check('city')
@@ -106,11 +87,5 @@ router.get('/dashboard',function(req,res)
   }
   return res.status(200).send("YOU ARE LOGGED IN");
 })
-router.get('/registrations', auth.connect(basic), (req, res) => {
-  Registration.find()
-    .then((registrations) => {
-      res.render('login', { title: 'Listing registrations', registrations });
-    })
-    .catch(() => { res.send('Sorry! Something went wrong.'); });
-});
+
 module.exports = router;

@@ -21,7 +21,14 @@
                       <li class="nav-link"><a href="#">CONTACT</a></li>
                       </ul>
                 <ul class="nav navbar-nav navbar-right">
-                  <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                  <ul class="nav navbar-nav navbar-right ">
+                    <% if(login){ %>
+                      <li><a href="/user/logout"><span class="glyphicon glyphicon-log-in"></span> logout</a></li>
+                      <% } else{ %>   
+                  <li><a href="/user/signup"><span class="glyphicon glyphicon-info-sign"></span> SignUp</a></li>
+                  <li><a href="/user/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                  <% } %>
+                </ul>
                 </ul>
               </div>
             </nav>
@@ -38,7 +45,15 @@
                     <div class="shape6"></div>
                     <div class="shape7"></div>
                     <div class="float">
-                        <form class="form" method="post" action="/login">
+                        <form class="form" method="post" action="/user/login">
+                          <ul> <%if (hasErrors) { %>
+                            <div class="alert alert-danger"> 
+                            <% massages.forEach((massage)=>{ %>
+                                <li><%= massage %> </li>
+                              <% }) %>
+                              <% } %>
+                            </div>
+                              </ul>
                             <div class="form-group">
                               <label>Email-Id:</label>
                                 <input type="email" name="emailid" id="emailid" class="form-control" required>
@@ -46,17 +61,18 @@
                             <div class="form-group">
                               <label>Password:</label>
                                 <input type="password" name="password" id="password" class="form-control" required>
-                            </div>
+                              </div>
                             <div class="form-group">
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                              <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
                             </div>
-                        </form>
+                          </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-  <span class="fa fa-sign-in"> Create an account?<a href="/signup"> sign-up</a></span>
+  <span class="fa fa-sign-in"> Create an account?<a href="/user/signup"> sign-up</a></span>
+  <span class="fa fa-sign-in"> Or enroll your pg for free<a href="/user/pg_signup"> sign-up</a></span>
   <p>Or go <a href="/">home</a>.</p>
 </body>
 </html>

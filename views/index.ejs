@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <title>PG FINDER</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+   <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+   <script src="ejs.js"></script>
+  </head>
+  <body bg-light>       
+          <nav class="navbar navbar-expand-lg bg-dark ">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                    <h1><a class="navbar-brand" href="/">PG Finder</a></h1>
+                </div>
+                <div class="collapse navbar-collapse navbar-element">
+                    <ul class="navbar-nav ml-auto">
+                      <li class="nav-item active">
+                  <li class="nav-link"><a href="/" id="link1">HOME</a></li>
+                      <li class="nav-link"><a href="#">CONTACT</a></li>
+                      <li class="nav-link"><a  href="/postroom" id="link2">POST-PG</a></li>
+                      </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <% if(user){ %>
+                    <li class="nav-link"><a  href="/signout" id="link3">logout</a></li>
+                    <li class="nav-link">
+                      <a class="nav-link" href="/profile" id="link4">Profile</a>
+                    </li>
+                    <% } else{ %>   
+                <li class="nav-link"><a id="link4" href="/signup"> SignUp</a></li>
+                <li class="nav-link"><a id="link3" href="/signin">Login</a></li>
+                <% } %>
+              </ul>
+              </div>>
+              </div>
+            </nav>
+          <div class="container"  id="jumbo1">
+            <form  action="/findroom" method="post" class="form-horizontal">
+              <div class="form-group">
+                  <label class="col-md-4 control-label">Enter Location:</label>  
+                  <div class="col-md-4">
+                       <input class="search-container" type="text" id="search-bar" name="location" placeholder="Enter a street, area or city" required>
+                  </div>
+              </div>
+              <div class="form-group">
+                    <label class="col-md-4 control-label">Rooms For:</label>
+                    <div class="col-md-4"> 
+                      <label class="radio-inline" for="gender0">
+                        <input type="radio" name="gender" id="gender0" value="boy" required>Boys
+                      </label> 
+                      <label class="radio-inline" for="gender1">
+                        <input type="radio" name="gender" id="gender1" value="girl" required>Girls
+                      </label>
+                    </div>
+              </div>
+                  
+                  <div class="form-group">
+                    <label class="col-md-4 control-label" for="radios">Rooms Type:</label>
+                    <div class="col-md-4"> 
+                      <label class="radio-inline" for="radios-0">
+                        <input type="radio" name="rtype" id="radios-0" value="single" checked="checked">Single
+                      </label> 
+                      <label class="radio-inline" for="radios-1" required>
+                        <input type="radio" name="rtype" id="radios-1" value="shared" required>Shared
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-md-4 control-label" ></label>  
+                      <div class="col-md-4">
+                      <button type="submit" class="btn btn-info">Find Now</button>
+                      </div>
+                    </div>
+            </form>
+          </div>       
+  </body>
+</html>

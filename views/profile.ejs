@@ -1,36 +1,122 @@
-<!DOCTYPE html>
-  <head>
-    <meta charset="utf-8">
-    <title>PG FINDER</title>
-    <link rel="stylesheet" type="text/css" href="/css/styles.css">
-   <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-   <script src="ejs.js"></script>
-  </head>
-  <body bg-light>       
-          <nav class="navbar navbar-expand-lg bg-dark">
-              <div class="container-fluid">
-                <div class="navbar-header">
-                  <a class="navbar-brand" href="#">PG FINDER</a>
-                </div>
-                <ul class="navbar-nav mr-auto">
-                  <li class="nav-link"><a href="/">HOME</a></li>
-                      <li class="nav-link"><a href="#">ABOUT</a></li>
-                      <li class="nav-link"><a href="#">CONTACT</a></li>
+<html>
+    <head>
+        <title>Profile</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/findroom.css">
+        <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+        <link rel="stylesheet" type="text/css" href="/css/slider.css">
+        <link href="/css/datepicker.min.css" rel="stylesheet" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="/js/datepicker.min.js"></script>
+        <script src="/js/datepicker.en.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/socialbtn.css">
+    <link rel="stylesheet" type="text/css" href="/css/signup.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link href="/css/datepicker.min.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/js/datepicker.min.js"></script>
+    <script src="/js/datepicker.en.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+        <style type="text/css">
+          body {
+          background-color: rgba(255, 255, 255, 0.698);
+          }
+        </style>
+      </head>
+
+    <body>
+            <nav class="navbar navbar-expand-lg bg-dark">
+                    <h1><a class="navbar-brand" href="/">PG Finder</a></h1>
+                    <div class="collapse navbar-collapse navbar-element">
+                      <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                          <a class="nav-link" id="link1" href="/">Find a Room</a>
+                        </li>
+                        <li class="nav-item active">
+                          <a class="nav-link" href="/postroom" id="link2">Post a Room</a>
+                        </li>
+                        <% if (user) { %>
+                        <li class="nav-item active">
+                          <a class="nav-link" href="/signout" id="link3">Sign out</a>
+                        </li>
+                        <li class="nav-item active">
+                          <a class="nav-link" href="/profile" id="link4">Profile</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/updateprofile" id="link5">Edit Profile</a>
+                        </li>
+                        <% } else { %>
+                        <li class="nav-item active">
+                          <a class="nav-link" id="link3" href="#signin" data-toggle="modal" data-target="#myModal">Sign In</a>
+                        </li>
+                        <li class="nav-item active">
+                          <a class="nav-link" id="link4" href="/signup">Sign Up</a>
+                        </li>
+                        <% } %>
                       </ul>
-                <ul class="nav navbar-nav navbar-right">
-                  <ul class="nav navbar-nav navbar-right ">
-                    <% if(login){ %>
-                      <li><a href="/user/logout"><span class="glyphicon glyphicon-log-in"></span> logout</a></li>
-                      <% } else{ %>   
-                  <li><a href="/user/signup"><span class="glyphicon glyphicon-info-sign"></span> SignUp</a></li>
-                  <li><a href="/user/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                  <% } %>
-                </ul> </ul>
+                    </div>
+                  </nav>
+                  <br><br><br>
+        <div class='content-div'>
+            <div class="container">
+                <div class="card allSidesSoft" style="background:rgb(249, 249, 249)">
+                  <div class="card-body">
+    
+    
+                    
+    
+                    <div class="col-sm-6">
+                      <div class="panel panel-default allSidesSoft panel-main-div">
+                        <div class="panel-heading"> Name : <%= user.name %></div>
+                      </div>
+                    </div>
+    
+    
+    
+                    <div class="col-sm-6">
+                      <div class="panel panel-default allSidesSoft panel-main-div">
+                        <div class="panel-heading">Phone No. : <%= user.num %></div>
+                      </div>
+                    </div>
+                    
+                    <div class="col-sm-6">
+                            <div class="panel panel-default allSidesSoft panel-main-div">
+                              <div class="panel-heading">DOB : <%= user.dob %></div>
+                            </div>
+                          </div>
+    
+    
+                    <div class="col-sm-6">
+                      <div class="panel panel-default allSidesSoft panel-main-div">
+                        <div class="panel-heading">Email : <%= user.email%></div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="panel panel-default allSidesSoft panel-main-div">
+                          <div class="panel-heading">Gender : <%= user.gender %></div>
+                        </div>
+                      </div>
+                      
+                      <br>
+    
+    
               </div>
-            </nav>
-            <h1>PROFILE</h1>
-  </body>
+          </div>
+        </div>
+    </div>    
+    </body>
 </html>
